@@ -1,0 +1,61 @@
+sheet_id,golden_id,system,human_overall,note
+H001,78,agent,3,"Right answer (not possible, use Community) but the Community URL is fabricated with a placeholder id - not sendable as-is."
+H002,116,agent,4,Honest 'no release date yet' plus a concrete place to watch; slightly cooler than the reference but sendable.
+H003,59,nn,1,'Just send it over' refers to nothing; does not answer how to take the annual offer.
+H004,29,nn,1,"Country-availability question answered with device/OS troubleshooting, and invents a customer name."
+H005,51,agent,4,"Apologises and asks for username/email via DM; reference asked for device info instead, but this is a legitimate next step."
+H006,2,canned,3,Apologetic tone plus a DM route roughly fits a venting customer the brand did DM; generic but not wrong.
+H007,151,nn,4,Matches the reference (DM the account email) almost exactly; loses a point for inventing the name 'Yolanda'.
+H008,10,nn,2,"Claims a DM was already sent, which may not be true, and collects none of the information billing needs."
+H009,21,agent,4,Tracks the reference closely; mild over-promise in 'we'll let you know when it's available'.
+H010,34,canned,3,"Right channel for an account-specific bug, but asks for 'more details' where the reference asks for the email/username."
+H011,106,nn,2,"A straightforward how-to (cancel then resubscribe annually) is deflected into a DM, and the Facebook-profile ask is irrelevant."
+H012,15,canned,2,Catalog question answered with a generic DM request; a DM cannot make an album appear.
+H013,119,nn,2,"Customer already says quality is set to HQ, so 'you can change the audio quality' misreads them, and the link is missing."
+H014,55,agent,4,Accurate and on-brand; only misses the email-signup link the reference offers.
+H015,33,canned,2,A content request answered with a generic DM ask; a DM cannot add an artist's catalogue.
+H016,144,agent,4,Explains the Facebook-deactivation cause and asks for the right details via DM; the email/username login advice is slightly loose.
+H017,57,agent,3,"Warm and on-brand, but invents a roadmap claim ('on our radar') instead of the reference's info link."
+H018,99,agent,4,Names the specific breakage and asks for the exact identifier needed; 'restore' slightly over-promises.
+H019,105,nn,1,Content-availability joke answered with a reinstall and a device question; entirely off-intent.
+H020,100,agent,2,"There is a known answer (usernames can't be changed, use a display name) and the reply asks for a DM instead."
+H021,82,nn,1,'Yup!' is not an answer to a feature suggestion; says nothing about the request.
+H022,60,agent,5,"Exactly the reference's fix (cache/cookies, incognito) plus one sensible extra step; sendable as-is."
+H023,97,nn,2,Answers a loading complaint with Xbox One information the customer never mentioned.
+H024,17,canned,2,Desktop beeping/uninstall problem deflected to DM instead of the reference's restart step; vague but harmless.
+H025,23,agent,3,"Plausible download troubleshooting but the settings path looks invented, and it misses the documented 'Downloads unexpectedly removed' steps."
+H026,25,canned,3,Account-email conflict is a legitimate DM case; loses points for not naming which addresses to send.
+H027,83,agent,5,"Apologises, names the problem, asks for the one identifier needed - matches the reference."
+H028,70,agent,4,De-escalates profanity well and asks for something concrete; reference had outage context this reply could not know.
+H029,120,agent,4,"Acknowledges the odd ad and gathers device/version; reference asked which ad, a near-equivalent ask."
+H030,81,nn,3,"Right instinct (DM, take a look) but misses the screenshot the reference asks for and never flags the possible phishing."
+H031,12,agent,3,Acceptable holding reply but invents a 'roadmap' claim rather than the reference's 'we're working on it'.
+H032,9,agent,3,"Clean reinstall is a reasonable step, but asking for an account email does not fit a connectivity problem."
+H033,75,agent,2,Implies Spotify can restore removed tracks on request; misleading about how licensing works.
+H034,39,canned,2,iPhone X update complaint answered with a generic DM ask; nothing a DM can resolve.
+H035,117,agent,4,Matches the reference's ask; trailing empty signature slash is a cosmetic defect.
+H036,58,nn,3,OS-update question is a plausible step but skips the device/version/screenshot the reference needs.
+H037,14,canned,2,Release-date question answered with 'sorry to hear that' and a DM ask; misreads a neutral question as a fault report.
+H038,150,nn,3,"Moves to DM as the brand does, but asserts a DM was sent and gathers nothing."
+H039,65,nn,2,The customer described the shuffle problem in detail; asking 'what issues are you having' ignores what they wrote.
+H040,86,agent,3,"Given a very vague complaint, asking for details is reasonable; the reference had context this reply could not."
+H041,24,nn,5,"Essentially the reference reply: accurate, warm, points to the content info page."
+H042,8,agent,3,"Confident in-app menu path for updating a card that does not match the documented flow; helpful tone, shaky facts."
+H043,118,agent,3,"Right move (upvote the idea) but the 'link' is a signature token, so the customer has nowhere to click."
+H044,38,agent,4,Friendly acknowledgement of a feature idea; less actionable than the reference's vote link.
+H045,22,nn,2,Customer already gave the browser and the exact error; asking 'what's happening exactly' wastes a turn.
+H046,137,nn,2,Carries the right content (Indonesian email support) but is a truncated retrieval fragment with the address missing.
+H047,132,nn,2,Asks what is happening when the customer said they cannot log in; the reference just collects the email/username.
+H048,91,agent,4,"Polite, on-brand acknowledgement of an idea; misses the Community link that would let them vote."
+H049,88,nn,2,"'That's not cool!' is the wrong register for a feature request, and the promised info link is missing."
+H050,141,agent,2,"Describes an 'Add to another playlist' flow that does not merge playlists, contradicting the reference's correct workaround."
+H051,115,agent,4,"For an unintelligible message with no context, asking for a screenshot is the right move."
+H052,74,agent,2,Reads 'cover of The Chain' as cover art and states a policy about it; misunderstands the request.
+H053,37,canned,2,Catalogue/licensing question deflected to DM; the reference's licensing explanation is what was needed.
+H054,67,agent,4,Explains catalog/region limits honestly and sets the right expectation.
+H055,104,agent,5,"Thanks the customer, names the platform, and points to Community where the idea can be voted on."
+H056,71,nn,2,"'It's music to our ears' misreads a complaint as praise, and invents the name 'Steph'."
+H057,109,agent,4,Diagnoses the Facebook-login conflict and asks for the identifier the reference asks for.
+H058,107,agent,3,Claims the request was 'passed to the team' and promises updates; the reference points to a votable idea instead.
+H059,6,canned,2,"A catalog question gets a generic DM ask; the reference asks for the specific title and country, which is what is needed."
+H060,77,nn,2,Deflects to DM when there is a real answer (contact your distributor/aggregator).
