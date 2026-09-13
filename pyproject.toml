@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "support-agent"
 version = "0.1.0"
 description = "Brand-specific AI support agent over the Customer Support on Twitter dataset"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
   "pandas>=2.2",
   "pyarrow>=15",

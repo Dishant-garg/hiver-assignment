@@ -5,6 +5,11 @@
 # predictions, and numpy's Generator decides every bootstrap interval. Both are pinned here so a
 # future release cannot silently move the committed numbers.
 #
+# Targets Python 3.12, which is what the committed results were produced on. numpy 2.5.3
+# publishes no wheel below 3.12, so these pins and an older interpreter cannot both be satisfied
+# -- pyproject therefore requires >=3.12 rather than claiming a 3.11 that `make setup` would fail
+# on. CI runs 3.12 for the same reason.
+#
 # Installed by `make setup`. To deliberately test against current releases instead:
 #   .venv/bin/pip install -e ".[dev]"        # ignores this file
 joblib==1.6.0
