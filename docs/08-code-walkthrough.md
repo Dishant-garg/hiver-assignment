@@ -189,7 +189,7 @@ If you have ten minutes rather than an hour, read `agent.py`, `rules.py` and the
 
 0. If the metric is one the report will quote, give it an interval too: add it to `_stats` in
    `run.py` using `stats.bootstrap_mean_ci`, or `stats.bootstrap_ci` if it is not a mean. A point
-   estimate with no interval is how the escalation claim went wrong once already (decision log 16).
+   estimate with no interval is how the escalation claim went wrong once already (decision log 14b).
 1. Add the computation to `src/support_agent/eval/metrics.py`, inside `intent_metrics` or
    `escalation_metrics`, or as a new function if it belongs to neither.
 2. Add a hand-computed case to `tests/test_metrics.py`. The existing tests use small inputs whose

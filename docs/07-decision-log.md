@@ -514,7 +514,12 @@ Results: `docs/05-judge-agreement.md`, `results/judge_agreement.json`.
   not know" and "a human must look at this", which is why splitting it is item 4 on the
   one-more-week list.
 
-## 14. The simple baselines train on weak labels, not golden labels
+## 14. Two decisions about not overstating the result
+
+Both halves of this entry are the same decision applied twice: where the evaluation could have
+been made to look better, report the weaker version and say why.
+
+### (a) The simple baselines train on weak labels, not golden labels
 
 - **What:** `baselines/intent.py` fits TF-IDF plus logistic regression on the keyword weak labels
   over the corpus. It never sees a hand label. `baselines/reply.py` returns the nearest neighbour's
@@ -532,29 +537,8 @@ Results: `docs/05-judge-agreement.md`, `results/judge_agreement.json`.
   is a softer claim than it sounds. The fix is a nested cross-validation on the 160 golden rows,
   reported alongside rather than instead of this number, and it costs no API calls.
 
-## 15. Temperature 0 everywhere, and the cache is committed
+### (b) Report intervals, not point estimates — and let one overturn a claim
 
-- **What:** Every call in the pipeline runs at temperature 0 -- the agent, the judge, and the
-  threshold tuning pass. The one exception is deliberate: `scripts/judge_consistency.py` re-scores
-  40 agent replies at 0.7 specifically to measure how much the judge moves. All 602 responses are
-  committed to `data/cache/llm_cache.jsonl`, keyed by a SHA-256 of the exact inputs.
-- **Why:** The cache is the reproduction story. `make reproduce` sets `LLM_OFFLINE=1`, which turns
-  any prompt not already on disk into a `CacheMissError` rather than a network call, so a grader
-  with no API key gets either the exact published numbers or a loud failure. That only means
-  something if the model was asked to be deterministic in the first place; a cache of sampled
-  responses is a record of one lucky draw dressed up as a result. Temperature 0 also removes one
-  free parameter from every comparison in the report, so a difference between the agent and a
-  baseline cannot be sampling noise in the agent.
-- **What it cost:** There is no variance estimate on the agent's own output. Every agent number in
-  `results/` is a single sample, so the error bars in the report come from the 160-row sample size
-  and from the judge study, never from re-running the model. The only measured variance in the whole
-  project is the judge's temperature arm (kappa 0.704 self-agreement), and it covers the judge, not
-  the agent. Committing the cache also means the repository ships 602 responses from one model
-  version on one date: it proves the pipeline is deterministic and proves nothing about
-  `gpt-oss-120b` next month. Re-running live is the only way to find out, and it costs a day of free
-  tier quota.
-
-## 16. Report intervals, not point estimates, and let one of them overturn a claim
 - **What:** Every headline metric ships with a seeded bootstrap 95% CI, and every system
   comparison is run **paired** — both systems scored on the same rows, bootstrapping the gap —
   in `src/support_agent/eval/stats.py`, surfaced in `results/summary.md` and `metrics.json`.
@@ -582,3 +566,25 @@ Results: `docs/05-judge-agreement.md`, `results/judge_agreement.json`.
   distribution, the choice of `miss_cost`, one brand, or one model at one reasoning effort —
   which are the larger error terms and have no interval at all. Report section 7 says this too,
   in the section where it does the most damage to my own headline.
+
+## 15. Temperature 0 everywhere, and the cache is committed
+
+- **What:** Every call in the pipeline runs at temperature 0 -- the agent, the judge, and the
+  threshold tuning pass. The one exception is deliberate: `scripts/judge_consistency.py` re-scores
+  40 agent replies at 0.7 specifically to measure how much the judge moves. All 602 responses are
+  committed to `data/cache/llm_cache.jsonl`, keyed by a SHA-256 of the exact inputs.
+- **Why:** The cache is the reproduction story. `make reproduce` sets `LLM_OFFLINE=1`, which turns
+  any prompt not already on disk into a `CacheMissError` rather than a network call, so a grader
+  with no API key gets either the exact published numbers or a loud failure. That only means
+  something if the model was asked to be deterministic in the first place; a cache of sampled
+  responses is a record of one lucky draw dressed up as a result. Temperature 0 also removes one
+  free parameter from every comparison in the report, so a difference between the agent and a
+  baseline cannot be sampling noise in the agent.
+- **What it cost:** There is no variance estimate on the agent's own output. Every agent number in
+  `results/` is a single sample, so the error bars in the report come from the 160-row sample size
+  and from the judge study, never from re-running the model. The only measured variance in the whole
+  project is the judge's temperature arm (kappa 0.704 self-agreement), and it covers the judge, not
+  the agent. Committing the cache also means the repository ships 602 responses from one model
+  version on one date: it proves the pipeline is deterministic and proves nothing about
+  `gpt-oss-120b` next month. Re-running live is the only way to find out, and it costs a day of free
+  tier quota.
