@@ -77,11 +77,11 @@ the uncertainty of the difference and hide two results that are real.
 |---|---|---|---|---|
 | majority | 0.125 | [0.075, 0.181] | 0.022 | [0.014, 0.031] |
 | logreg | 0.463 | [0.388, 0.537] | 0.463 | [0.364, 0.542] |
-| agent | 0.744 | [0.675, 0.806] | 0.685 | [0.599, 0.761] |
+| agent | 0.738 | [0.669, 0.806] | 0.679 | [0.592, 0.755] |
 
-The agent is 28 points above TF-IDF logistic regression, and this is the one headline gap large
+The agent is 27 points above TF-IDF logistic regression, and this is the one headline gap large
 enough that sampling noise is not a candidate explanation: the intervals do not overlap, and on the
-paired test the agent is alone correct on 59 rows against logreg's 14 (exact McNemar, p = 1.0e-07).
+paired test the agent is alone correct on 59 rows against logreg's 15 (exact McNemar, p = 2.6e-07).
 The gap is real but partly an artefact of how the baseline was trained: logreg learns from the
 *weak* labels, which disagree with the hand labels on 45.6% of rows, so it reproduces a signal that
 is itself 46% noise. Cross-validated on the golden labels it would score higher. Macro-F1 also
@@ -113,12 +113,12 @@ keyword layer alone is not a safety mechanism, even after correction against the
 
 | system | n | grounded | correct | tone | actionable | overall | overall 95% CI | share overall>=4 | parse fail |
 |---|---|---|---|---|---|---|---|---|---|
-| agent | 160 | 3.24 | 3.27 | 4.51 | 3.33 | 3.07 | [2.825, 3.312] | 0.46 | 0 |
+| agent | 160 | 3.21 | 3.26 | 4.53 | 3.33 | 3.06 | [2.819, 3.306] | 0.44 | 0 |
 | canned | 40 | 2.85 | 2.10 | 3.83 | 2.27 | 2.12 | [1.825, 2.450] | 0.15 | 0 |
-| nn | 160 | 4.95 | 2.64 | 4.38 | 2.96 | 2.66 | [2.400, 2.925] | 0.38 | 0 |
+| nn | 160 | 4.95 | 2.64 | 4.38 | 2.94 | 2.66 | [2.406, 2.925] | 0.38 | 0 |
 
-The agent leads, and the lead survives the paired bootstrap: +0.406 [+0.113, +0.694] against
-nearest-neighbour, +0.700 [+0.225, +1.175] against canned on the 40 rows where both were judged,
+The agent leads, and the lead survives the paired bootstrap: +0.400 [+0.106, +0.688] against
+nearest-neighbour, +0.675 [+0.175, +1.150] against canned on the 40 rows where both were judged,
 ahead in 100% of resamples both times. The per-system intervals overlap, which is why the pairing
 is necessary: the difference is measured far more precisely than either mean. Section 5 confirms
 the ranking against a human scorer. Read the nn row
@@ -126,7 +126,7 @@ carefully. Its groundedness of 4.95 is degenerate: the baseline returns a retrie
 verbatim and the judge is shown that same retrieval as the evidence, so the candidate *is* the
 evidence and cannot be ungrounded. Correctness 2.64 is the honest column there, and the agent beats
 it by 0.63. The agent's own weakest dimensions are groundedness and correctness, both near 3.2,
-against tone at 4.51. It sounds like the brand and is right about two-thirds of the time.
+against tone at 4.53. It sounds like the brand and is right about two-thirds of the time.
 
 ## 5. Is the judge worth believing
 
@@ -147,7 +147,7 @@ The disagreements matter more than the kappa, because they are one-directional. 
 rationales use the word "invent", and those rows average 1.06 points *below* the human. Four praise
 a candidate for matching the evidence exactly, and those average 1.50 points *above*. The judge is
 measuring fidelity to retrieved text rather than whether a customer is helped. That bias runs
-against the agent and for the retrieval baseline, so the agent's 3.07 against nn's 2.66 is, if
+against the agent and for the retrieval baseline, so the agent's 3.06 against nn's 2.66 is, if
 anything, understated. One qualification: the human scorer was an AI assistant applying the written
 rubric, not a second person, so scorer and judge can be wrong in the same direction, and this study
 would record that as agreement.
@@ -216,7 +216,7 @@ mean both "I do not know" and "a human must look at this". Fix: split it into `o
 
 ## 7. What is misleading about my headline number
 
-The headline is intent accuracy 0.744 against 0.463. Here is what it hides.
+The headline is intent accuracy 0.738 against 0.463. Here is what it hides.
 
 **The headline is the one result that is not fragile, and it is not the interesting one.** Nobody
 deploys a support agent because it classifies well; they deploy it because it is safe to let it
@@ -254,7 +254,7 @@ never seen. Golden 145's top score is 0.738. That inflates the nn baseline and t
 groundedness alike.
 
 **The judge is an LLM with a measured bias and moderate agreement.** kappa 0.561 [0.350, 0.711],
-exact agreement 0.38. The reply gap of +0.406 [+0.113, +0.694] does survive *sampling* noise, but
+exact agreement 0.38. The reply gap of +0.400 [+0.106, +0.688] does survive *sampling* noise, but
 sampling noise is not the binding constraint: a judge that matches a careful human exactly on 38%
 of rows is being asked to resolve four tenths of a point.
 
@@ -268,7 +268,7 @@ what would break it.
 **Every agent number was measured at `reasoning_effort="low"`.** The pin exists because a
 default-effort run costs roughly 212K tokens against a ~200K daily cap, and Groq bills reasoning
 tokens against `max_tokens`; about 25% of calls truncated before the pin went in. Groundedness at
-3.24 is the agent's weakest judged dimension, and some of that may be reasoning the model was never
+3.21 is the agent's weakest judged dimension, and some of that may be reasoning the model was never
 given room to do. The alternative has never been measured.
 
 **"Automation rate" says nothing about the customer.** 33.1% means 33.1% of drafts went out without

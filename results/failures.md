@@ -180,25 +180,25 @@ Up to 3 examples from each rule-hit group:
 
 ### `weak_evidence|intent_not_auto_handleable` — 2 rows
 
-**golden 11** (true intent `feature_request`, agent said `other`, confidence 0.97, top retrieval score 0.234)
+**golden 11** (true intent `feature_request`, agent said `other`, confidence 0.60, top retrieval score 0.234)
 
 - Customer: Really hope give us all the music facts about our 2017 music like they did a couple of years ago !!
 - Golden label: should_escalate `False`, reason `none`
 - Golden note: Wants the year-in-review music stats brought back - a retired feature. Weak label said other; disagree.
-- Agent reply: We love your enthusiasm! 🎶 While we don’t provide music facts on demand, feel free to explore artist bios and playlists on Spotify. Let us know if you need anything else!
+- Agent reply: We love sharing music insights! Could you let us know exactly what info you’re after so we can help? 🎶
 - Agent decision: escalate `True`, rules `weak_evidence|intent_not_auto_handleable`, llm_escalate `False`, reason: Best historical match 0.23 < 0.3; Intent 'other' requires a human (account, money, or policy)
-- Judge: overall 1, grounded 1, correct 2, actionable 2 — The candidate invents a policy ('don't provide music facts on demand') and suggests irrelevant features (artist bios) that are not in the evidence or reference, failing to acknowledge the specific re…
+- Judge: overall 2, grounded 2, correct 2, actionable 2 — The candidate invents a capability ('help' with specific info) not supported by the evidence or reference, which correctly identifies that the team cannot promise specific features but will pass feed…
 
 **golden 18** (true intent `content_availability`, agent said `other`, confidence 0.99, top retrieval score 0.279)
 
 - Customer: Hey I see you're in Indonesia and Singapore.... India is just a couple of hours away, come visit, you'll like it here.. 🙂
 - Golden label: should_escalate `False`, reason `none`
 - Golden note: Country-launch request (India). The taxonomy merges country launches into content_availability; the brand's reply is the launch-mailing-list answer. Weak label said other; disagree.
-- Agent reply: Thanks for the love! We’re always working on expanding to new places—stay tuned for updates. 🙏
+- Agent reply: Thanks for the love! We’re always working on expanding to new places. Stay tuned for updates. 🌏
 - Agent decision: escalate `True`, rules `weak_evidence|intent_not_auto_handleable`, llm_escalate `False`, reason: Best historical match 0.28 < 0.3; Intent 'other' requires a human (account, money, or policy)
-- Judge: overall 2, grounded 4, correct 3, actionable 1 — The reply is friendly and grounded in the general expansion policy, but it fails to provide the specific, actionable next step (adding an email) that the reference reply and evidence emphasize.
+- Judge: overall 2, grounded 4, correct 3, actionable 1 — The reply is friendly and grounded in the general expansion theme, but it fails to provide the specific, actionable next step (adding an email) present in the reference and evidence, making it less e…
 
-## C. Intent confusions (41 of 160 rows wrong)
+## C. Intent confusions (42 of 160 rows wrong)
 
 | true | predicted | count |
 |---|---|---:|
@@ -212,12 +212,12 @@ Up to 3 examples from each rule-hit group:
 | `content_availability` | `library_playlist_issue` | 2 |
 | `content_availability` | `other` | 2 |
 | `other` | `feature_request` | 2 |
+| `other` | `account_access` | 2 |
 | `library_playlist_issue` | `playback_issue` | 1 |
 | `subscription_plan` | `billing_and_refund` | 1 |
 | `playback_issue` | `how_to_question` | 1 |
 | `other` | `playback_issue` | 1 |
 | `other` | `app_bug` | 1 |
-| `other` | `account_access` | 1 |
 | `account_access` | `app_bug` | 1 |
 | `library_playlist_issue` | `feature_request` | 1 |
 | `how_to_question` | `content_availability` | 1 |
@@ -319,13 +319,13 @@ Up to 3 examples for every pair with 2 or more rows:
 - Agent decision: escalate `True`, rules `intent_not_auto_handleable`, llm_escalate `False`, reason: Intent 'other' requires a human (account, money, or policy)
 - Judge: overall 5, grounded 5, correct 5, actionable 4 — The reply accurately reflects the reference and evidence by acknowledging the feedback and promising to pass it on, maintaining a friendly and concise tone suitable for the platform.
 
-**golden 11** (true intent `feature_request`, agent said `other`, confidence 0.97, top retrieval score 0.234)
+**golden 11** (true intent `feature_request`, agent said `other`, confidence 0.60, top retrieval score 0.234)
 
 - Customer: Really hope give us all the music facts about our 2017 music like they did a couple of years ago !!
 - Golden label: should_escalate `False`, reason `none`
 - Golden note: Wants the year-in-review music stats brought back - a retired feature. Weak label said other; disagree.
 - Agent decision: escalate `True`, rules `weak_evidence|intent_not_auto_handleable`, llm_escalate `False`, reason: Best historical match 0.23 < 0.3; Intent 'other' requires a human (account, money, or policy)
-- Judge: overall 1, grounded 1, correct 2, actionable 2 — The candidate invents a policy ('don't provide music facts on demand') and suggests irrelevant features (artist bios) that are not in the evidence or reference, failing to acknowledge the specific re…
+- Judge: overall 2, grounded 2, correct 2, actionable 2 — The candidate invents a capability ('help' with specific info) not supported by the evidence or reference, which correctly identifies that the team cannot promise specific features but will pass feed…
 
 **golden 116** (true intent `feature_request`, agent said `other`, confidence 0.97, top retrieval score 0.319)
 
@@ -423,7 +423,7 @@ Up to 3 examples for every pair with 2 or more rows:
 - Golden label: should_escalate `False`, reason `none`
 - Golden note: Country-launch request (India). The taxonomy merges country launches into content_availability; the brand's reply is the launch-mailing-list answer. Weak label said other; disagree.
 - Agent decision: escalate `True`, rules `weak_evidence|intent_not_auto_handleable`, llm_escalate `False`, reason: Best historical match 0.28 < 0.3; Intent 'other' requires a human (account, money, or policy)
-- Judge: overall 2, grounded 4, correct 3, actionable 1 — The reply is friendly and grounded in the general expansion policy, but it fails to provide the specific, actionable next step (adding an email) that the reference reply and evidence emphasize.
+- Judge: overall 2, grounded 4, correct 3, actionable 1 — The reply is friendly and grounded in the general expansion theme, but it fails to provide the specific, actionable next step (adding an email) present in the reference and evidence, making it less e…
 
 **golden 146** (true intent `content_availability`, agent said `other`, confidence 0.95, top retrieval score 0.304)
 
@@ -441,7 +441,7 @@ Up to 3 examples for every pair with 2 or more rows:
 - Golden label: should_escalate `True`, reason `out_of_scope`
 - Golden note: An artist/promoter pitching a cover for an editorial playlist; the brand routes it to Artist Services. Same creator-surface call as rows 3 and 77. Weak label said library_playlist_issue; disagree, it is not their librar…
 - Agent decision: escalate `True`, rules `weak_evidence`, llm_escalate `False`, reason: Best historical match 0.27 < 0.3
-- Judge: overall 1, grounded 1, correct 1, actionable 1 — The candidate invents a promise to pass the suggestion to the curation team, which contradicts the reference reply that directs the user to Artist Services, and provides no actionable link or step.
+- Judge: overall 1, grounded 1, correct 1, actionable 1 — The candidate invents a promise to pass the recommendation to the team, which contradicts the reference reply that directs the user to Artist Services, and provides no actionable next step.
 
 **golden 139** (true intent `other`, agent said `feature_request`, confidence 0.97, top retrieval score 0.547)
 
@@ -451,7 +451,25 @@ Up to 3 examples for every pair with 2 or more rows:
 - Agent decision: escalate `False`, rules `nan`, llm_escalate `False`, reason: User asks about a potential new feature, no account or billing info needed.
 - Judge: overall 2, grounded 2, correct 3, actionable 2 — The reply invents a policy ('we're always listening') and fails to perform the specific action of forwarding the feedback to the right team as done in the reference, making it less helpful and ground…
 
-## D. Lowest-judged agent replies (72 scored overall ≤ 2, 34 of them a 1)
+### true `other` → predicted `account_access` (2)
+
+**golden 32** (true intent `other`, agent said `account_access`, confidence 0.92, top retrieval score 0.636)
+
+- Customer: it’s been three days....still haven’t answered DMs
+- Golden label: should_escalate `True`, reason `human_requested`
+- Golden note: Chasing an unanswered DM thread: no content to act on, and a human already owns the conversation, so human_requested rather than ambiguous. Labelled the same way as row 114. Weak label agrees on intent.
+- Agent decision: escalate `True`, rules `intent_not_auto_handleable`, llm_escalate `True`, reason: Intent 'account_access' requires a human (account, money, or policy); The user is awaiting a DM response about their account, requiring a human follow‑up.
+- Judge: overall 5, grounded 5, correct 5, actionable 4 — The reply is grounded in the evidence (DM sent), correctly addresses the delay and directs the user to the DM channel, and maintains a friendly, concise tone suitable for Twitter support.
+
+**golden 147** (true intent `other`, agent said `account_access`, confidence 0.95, top retrieval score 0.620)
+
+- Customer: Hi please see my DM :)
+- Golden label: should_escalate `True`, reason `human_requested`
+- Golden note: 'Please see my DM' - no content in the message; a human already owns the thread. Same call as rows 32 and 114. Worth noting the brand's reply asks for date of birth and the last four card digits: exactly the data that m…
+- Agent decision: escalate `True`, rules `human_requested|intent_not_auto_handleable`, llm_escalate `False`, reason: Customer explicitly asked for a human; Intent 'account_access' requires a human (account, money, or policy)
+- Judge: overall 3, grounded 4, correct 3, actionable 2 — The reply is friendly and grounded in the general workflow, but it fails to provide the specific security details (DOB, last 4 digits) required by the reference to actually resolve the refund request…
+
+## D. Lowest-judged agent replies (72 scored overall ≤ 2, 33 of them a 1)
 
 The judge scores replies blind and is ±1 point noisy on a single row (`docs/05-judge-agreement.md`), so read these as a pile, not as verdicts. The 12 worst, with the evidence the reply had to work from:
 
@@ -550,10 +568,10 @@ The judge scores replies blind and is ±1 point noisy on a single row (`docs/05-
 - Customer: Is Hypnotoad on yet?
 - Golden label: should_escalate `False`, reason `none`
 - Golden note: Joke catalogue request; the brand plays along and gives the content answer. Weak label said other; disagree.
-- Agent reply: Hey! We don’t have a track called “Hypnotoad” in our catalog right now. If it gets added, you’ll see it in search. Let us know if you have any other questions!
+- Agent reply: Hey! We don’t have a track called “Hypnotoad” in our catalog right now. Keep an eye on new releases – we add fresh music all the time!
 - Agent decision: escalate `True`, rules `weak_evidence`, llm_escalate `False`, reason: Best historical match 0.00 < 0.3
-- Judge: overall 1, grounded 1, correct 1, actionable 1 — The candidate invents a false fact that the track is not in the catalog, directly contradicting the reference which implies it is available or provides a link to content info, and fails to provide th…
-- Evidence retrieved: Hey Scotty, what platform/device are you using the app on? Give a reinstall a go: /C || Hey there! Can you tell us what's happening exactly? We'll lend a hand /RH || Hey, that doesn't sound good! Did the app crash at any point during the 30 minutes? That can cause the ad-free time to reset /FR
+- Judge: overall 1, grounded 1, correct 1, actionable 1 — The candidate invents a false fact that the track does not exist, whereas the reference indicates it is available but requires specific content information, making the reply factually wrong and unhel…
+- Evidence retrieved: Hey Scotty, what platform/device are you using the app on? Give a reinstall a go: /C || Hey Colin! Chromecast support is rolling out in the next few weeks. Fingers crossed you'll have the update soon :) /BH || Hey! There's more info on the 10k limit in Your Music (Songs + Albums + Artists) here: /RC
 
 **golden 106** (true intent `subscription_plan`, agent said `subscription_plan`, confidence 0.99, top retrieval score 0.249)
 

@@ -402,13 +402,13 @@
       ]
     },
     "agent": {
-      "accuracy": 0.74375,
-      "macro_f1": 0.6853980583714756,
+      "accuracy": 0.7375,
+      "macro_f1": 0.6791155689855379,
       "per_class": {
         "account_access": {
-          "precision": 0.6875,
+          "precision": 0.6470588235294118,
           "recall": 0.8461538461538461,
-          "f1": 0.7586206896551724,
+          "f1": 0.7333333333333333,
           "support": 13
         },
         "billing_and_refund": {
@@ -460,9 +460,9 @@
           "support": 4
         },
         "other": {
-          "precision": 0.7058823529411765,
-          "recall": 0.6,
-          "f1": 0.6486486486486487,
+          "precision": 0.6875,
+          "recall": 0.55,
+          "f1": 0.6111111111111112,
           "support": 20
         }
       },
@@ -576,7 +576,7 @@
           0
         ],
         [
-          1,
+          2,
           0,
           0,
           1,
@@ -585,7 +585,7 @@
           0,
           2,
           3,
-          12
+          11
         ]
       ],
       "labels": [
@@ -636,13 +636,13 @@
   },
   "reply": {
     "agent": {
-      "groundedness": 3.2375,
-      "correctness": 3.26875,
-      "tone": 4.50625,
-      "actionability": 3.33125,
-      "overall": 3.06875,
+      "groundedness": 3.2125,
+      "correctness": 3.25625,
+      "tone": 4.525,
+      "actionability": 3.325,
+      "overall": 3.0625,
       "n": 160,
-      "share_overall_ge4": 0.45625,
+      "share_overall_ge4": 0.44375,
       "parse_failures": 0
     },
     "canned": {
@@ -658,11 +658,11 @@
     "nn": {
       "groundedness": 4.95,
       "correctness": 2.64375,
-      "tone": 4.38125,
-      "actionability": 2.95625,
+      "tone": 4.375,
+      "actionability": 2.94375,
       "overall": 2.6625,
       "n": 160,
-      "share_overall_ge4": 0.375,
+      "share_overall_ge4": 0.38125,
       "parse_failures": 0
     }
   },
@@ -694,23 +694,23 @@
       },
       "agent": {
         "accuracy_ci95": [
-          0.675,
+          0.6687,
           0.8063
         ],
         "macro_f1_ci95": [
-          0.5985,
-          0.7615
+          0.5922,
+          0.7548
         ]
       },
       "agent_vs_logreg_mcnemar": {
         "b": 59,
-        "c": 14,
-        "p_exact": 1.0136448982171495e-07
+        "c": 15,
+        "p_exact": 2.553422007441105e-07
       },
       "agent_vs_majority_mcnemar": {
         "b": 107,
-        "c": 8,
-        "p_exact": 3.073178824824114e-23
+        "c": 9,
+        "p_exact": 2.000237426140383e-22
       }
     },
     "escalation": {
@@ -754,8 +754,8 @@
     "reply": {
       "agent": {
         "overall_ci95": [
-          2.825,
-          3.3125
+          2.8188,
+          3.3062
         ]
       },
       "canned": {
@@ -766,26 +766,26 @@
       },
       "nn": {
         "overall_ci95": [
-          2.4,
+          2.4062,
           2.925
         ]
       },
       "agent_vs_canned": {
-        "diff": 0.7,
+        "diff": 0.675,
         "ci95": [
-          0.225,
-          1.175
+          0.175,
+          1.15
         ],
-        "p_a_lower": 0.002,
+        "p_a_lower": 0.004,
         "n": 40
       },
       "agent_vs_nn": {
-        "diff": 0.4062,
+        "diff": 0.4,
         "ci95": [
-          0.1125,
-          0.6937
+          0.1062,
+          0.6875
         ],
-        "p_a_lower": 0.004,
+        "p_a_lower": 0.003,
         "n": 160
       }
     },

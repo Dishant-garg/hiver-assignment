@@ -533,7 +533,7 @@ been made to look better, report the weaker version and say why.
   `docs/01-report.md` section 4 says so rather than banking the margin. The weak labeller disagrees
   with the hand labels on 45.6% of golden rows, so logreg is being asked to reproduce a signal that
   is itself about 46% noise; its 0.463 accuracy understates what a TF-IDF classifier could do with
-  clean labels. The agent's 0.744 is still clearly ahead, but "28 points above logistic regression"
+  clean labels. The agent's 0.738 is still clearly ahead, but "27 points above logistic regression"
   is a softer claim than it sounds. The fix is a nested cross-validation on the 160 golden rows,
   reported alongside rather than instead of this number, and it costs no API calls.
 
@@ -552,12 +552,12 @@ been made to look better, report the weaker version and say why.
   whether you can tell a result from a rounding error.
 - **Why paired specifically:** the systems are scored on identical rows and fail on largely the
   same messages. Comparing two independent per-system intervals would have hidden a real result:
-  the agent's reply-quality lead over nearest-neighbour is +0.406 **[+0.113, +0.694]** paired —
-  excludes zero, ahead in 100% of resamples — while the two systems' own intervals ([2.825, 3.312]
-  and [2.400, 2.925]) overlap. Unpaired, that finding disappears.
+  the agent's reply-quality lead over nearest-neighbour is +0.400 **[+0.106, +0.688]** paired —
+  excludes zero, ahead in 100% of resamples — while the two systems' own intervals ([2.819, 3.306]
+  and [2.406, 2.925]) overlap. Unpaired, that finding disappears.
 - **What it changed:** three claims. The escalation comparison went from "loses" to
   "indistinguishable". The reply-quality lead went from hedged ("sits inside the noise") to
-  supported. The intent result was confirmed and strengthened (p = 1.0e-07).
+  supported. The intent result was confirmed and strengthened (p = 2.6e-07).
 - **Cost:** ~1s of runtime and a duplicated macro-F1 implementation (`_macro_f1_from_codes`, in
   numpy, because routing 10,000 resamples through sklearn dominated everything else). A test pins
   the duplicate against `intent_metrics` so it cannot drift.

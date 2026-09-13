@@ -43,7 +43,7 @@ All figures are `results/summary.md` verbatim, on n = 160 held-out messages. The
 |---|---|---|---|---|
 | majority class | 0.125 | [0.075, 0.181] | 0.022 | [0.014, 0.031] |
 | TF-IDF + logistic regression | 0.463 | [0.388, 0.537] | 0.463 | [0.364, 0.542] |
-| **agent** | **0.744** | [0.675, 0.806] | **0.685** | [0.599, 0.761] |
+| **agent** | **0.738** | [0.669, 0.806] | **0.679** | [0.592, 0.755] |
 
 **Escalation** (positive = escalate; `weighted error` prices a missed escalation at 5x an
 unnecessary one)
@@ -58,8 +58,8 @@ unnecessary one)
 
 | system | n | grounded | correct | tone | actionable | overall | 95% CI | >=4 | parse fail |
 |---|---|---|---|---|---|---|---|---|---|
-| **agent** | 160 | 3.24 | 3.27 | 4.51 | 3.33 | **3.07** | [2.83, 3.31] | 0.46 | 0 |
-| nearest neighbour | 160 | 4.95 | 2.64 | 4.38 | 2.96 | 2.66 | [2.40, 2.93] | 0.38 | 0 |
+| **agent** | 160 | 3.21 | 3.26 | 4.53 | 3.33 | **3.06** | [2.82, 3.31] | 0.44 | 0 |
+| nearest neighbour | 160 | 4.95 | 2.64 | 4.38 | 2.94 | 2.66 | [2.41, 2.93] | 0.38 | 0 |
 | canned deflection | 40 | 2.85 | 2.10 | 3.83 | 2.27 | 2.12 | [1.83, 2.45] | 0.15 | 0 |
 
 ### What the numbers support
@@ -69,8 +69,8 @@ also run **paired** — both systems scored on the same rows, bootstrapping the 
 system separately.
 
 - **Intent, agent vs. logistic regression.** The agent is alone correct on 59 rows, the baseline on
-  14. Exact McNemar *p* = 1.0e-07. This one is not close.
-- **Reply quality, agent vs. nearest neighbour.** +0.406 [+0.113, +0.694], ahead in 100% of
+  15. Exact McNemar *p* = 2.6e-07. This one is not close.
+- **Reply quality, agent vs. nearest neighbour.** +0.400 [+0.106, +0.688], ahead in 100% of
   resamples. The per-system intervals overlap, which is precisely why the pairing matters.
 - **Escalation, agent vs. always-escalate.** +0.0437 [-0.156, +0.263], with the agent cheaper in
   34% of resamples. **The two are indistinguishable at this sample size** — the interval is nearly
