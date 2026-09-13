@@ -1,0 +1,10 @@
+{
+  "n": 40,
+  "kappa_quadratic": 0.7040302267002518,
+  "spearman": 0.694103451,
+  "exact_agreement": 0.55,
+  "within_one": 0.9,
+  "constant_t0": false,
+  "constant_t07": false,
+  "note": ""
+}

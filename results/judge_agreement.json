@@ -1,0 +1,101 @@
+{
+  "overall": {
+    "n": 60,
+    "kappa_quadratic": 0.5610005104645227,
+    "spearman": 0.59059456,
+    "exact_agreement": 0.38333333333333336,
+    "within_one": 0.7833333333333333,
+    "human_mean": 2.883,
+    "judge_mean": 2.85,
+    "judge_minus_human_mean": -0.033,
+    "kappa_ci95": [
+      0.35,
+      0.711
+    ],
+    "spearman_ci95": [
+      0.372,
+      0.76
+    ]
+  },
+  "per_system": {
+    "agent": {
+      "n": 30,
+      "kappa_quadratic": 0.5714285714285714,
+      "spearman": 0.674943828,
+      "exact_agreement": 0.43333333333333335,
+      "within_one": 0.8,
+      "human_mean": 3.533,
+      "judge_mean": 3.167,
+      "judge_minus_human_mean": -0.367,
+      "kappa_ci95": [
+        0.339,
+        0.745
+      ],
+      "spearman_ci95": [
+        0.411,
+        0.845
+      ]
+    },
+    "nn": {
+      "n": 20,
+      "kappa_quadratic": 0.4854881266490766,
+      "spearman": 0.583260939,
+      "exact_agreement": 0.3,
+      "within_one": 0.75,
+      "human_mean": 2.2,
+      "judge_mean": 2.65,
+      "judge_minus_human_mean": 0.45,
+      "kappa_ci95": [
+        0.137,
+        0.751
+      ],
+      "spearman_ci95": [
+        0.199,
+        0.824
+      ]
+    },
+    "canned": {
+      "n": 10,
+      "kappa_quadratic": 0.15492957746478864,
+      "spearman": 0.274351631,
+      "exact_agreement": 0.4,
+      "within_one": 0.8,
+      "human_mean": 2.3,
+      "judge_mean": 2.3,
+      "judge_minus_human_mean": 0.0,
+      "kappa_ci95": [
+        -0.182,
+        0.623
+      ],
+      "spearman_ci95": [
+        -0.325,
+        0.861
+      ]
+    }
+  },
+  "self_consistency": {
+    "n": 40,
+    "kappa_quadratic": 0.7040302267002518,
+    "spearman": 0.694103451,
+    "exact_agreement": 0.55,
+    "within_one": 0.9,
+    "constant_t0": false,
+    "constant_t07": false,
+    "note": ""
+  },
+  "system_ranking": {
+    "human": {
+      "agent": 3.533,
+      "canned": 2.3,
+      "nn": 2.2
+    },
+    "judge": {
+      "agent": 3.167,
+      "nn": 2.65,
+      "canned": 2.3
+    }
+  },
+  "judge_parse_ok": true,
+  "kappa_caveat": "Per-system kappa is computed on n=30/20/10 and is unstable at those sizes; the canned slice in particular has almost no score variance, which deflates kappa mechanically. Use the overall row for the headline number.",
+  "bootstrap_note": "kappa_ci95 and spearman_ci95 are seeded percentile bootstrap intervals (config.SEED, 2000 resamples of the scored pairs, 2.5th/97.5th percentile). A resample in which either score vector comes out constant has an undefined kappa; agreement.weighted_kappa returns 0.0 there, the conservative reading, so such resamples pull the lower bound down rather than being dropped."
+}

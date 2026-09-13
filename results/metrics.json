@@ -1,0 +1,798 @@
+{
+  "n": 160,
+  "intent": {
+    "majority": {
+      "accuracy": 0.125,
+      "macro_f1": 0.02222222222222222,
+      "per_class": {
+        "account_access": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 13
+        },
+        "billing_and_refund": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 20
+        },
+        "subscription_plan": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 19
+        },
+        "playback_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "app_bug": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 14
+        },
+        "library_playlist_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8
+        },
+        "content_availability": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "feature_request": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 26
+        },
+        "how_to_question": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "other": {
+          "precision": 0.125,
+          "recall": 1.0,
+          "f1": 0.2222222222222222,
+          "support": 20
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          19
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          14
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          26
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          20
+        ]
+      ],
+      "labels": [
+        "account_access",
+        "billing_and_refund",
+        "subscription_plan",
+        "playback_issue",
+        "app_bug",
+        "library_playlist_issue",
+        "content_availability",
+        "feature_request",
+        "how_to_question",
+        "other"
+      ]
+    },
+    "logreg": {
+      "accuracy": 0.4625,
+      "macro_f1": 0.4630643219168036,
+      "per_class": {
+        "account_access": {
+          "precision": 0.6666666666666666,
+          "recall": 0.3076923076923077,
+          "f1": 0.42105263157894735,
+          "support": 13
+        },
+        "billing_and_refund": {
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.7777777777777778,
+          "support": 20
+        },
+        "subscription_plan": {
+          "precision": 0.8333333333333334,
+          "recall": 0.7894736842105263,
+          "f1": 0.8108108108108109,
+          "support": 19
+        },
+        "playback_issue": {
+          "precision": 0.375,
+          "recall": 0.75,
+          "f1": 0.5,
+          "support": 4
+        },
+        "app_bug": {
+          "precision": 0.3333333333333333,
+          "recall": 0.21428571428571427,
+          "f1": 0.2608695652173913,
+          "support": 14
+        },
+        "library_playlist_issue": {
+          "precision": 0.4666666666666667,
+          "recall": 0.875,
+          "f1": 0.6086956521739131,
+          "support": 8
+        },
+        "content_availability": {
+          "precision": 0.6875,
+          "recall": 0.34375,
+          "f1": 0.4583333333333333,
+          "support": 32
+        },
+        "feature_request": {
+          "precision": 0.6666666666666666,
+          "recall": 0.07692307692307693,
+          "f1": 0.13793103448275862,
+          "support": 26
+        },
+        "how_to_question": {
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333333333333333,
+          "support": 4
+        },
+        "other": {
+          "precision": 0.208955223880597,
+          "recall": 0.7,
+          "f1": 0.3218390804597701,
+          "support": 20
+        }
+      },
+      "confusion": [
+        [
+          4,
+          0,
+          1,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          14,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          1,
+          15,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          3,
+          1,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          11,
+          1,
+          0,
+          19
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          3,
+          2,
+          3,
+          2,
+          0,
+          13
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          2,
+          0,
+          1,
+          14
+        ]
+      ],
+      "labels": [
+        "account_access",
+        "billing_and_refund",
+        "subscription_plan",
+        "playback_issue",
+        "app_bug",
+        "library_playlist_issue",
+        "content_availability",
+        "feature_request",
+        "how_to_question",
+        "other"
+      ]
+    },
+    "agent": {
+      "accuracy": 0.74375,
+      "macro_f1": 0.6853980583714756,
+      "per_class": {
+        "account_access": {
+          "precision": 0.6875,
+          "recall": 0.8461538461538461,
+          "f1": 0.7586206896551724,
+          "support": 13
+        },
+        "billing_and_refund": {
+          "precision": 0.95,
+          "recall": 0.95,
+          "f1": 0.95,
+          "support": 20
+        },
+        "subscription_plan": {
+          "precision": 0.8666666666666667,
+          "recall": 0.6842105263157895,
+          "f1": 0.7647058823529411,
+          "support": 19
+        },
+        "playback_issue": {
+          "precision": 0.3,
+          "recall": 0.75,
+          "f1": 0.42857142857142855,
+          "support": 4
+        },
+        "app_bug": {
+          "precision": 0.7272727272727273,
+          "recall": 0.5714285714285714,
+          "f1": 0.64,
+          "support": 14
+        },
+        "library_playlist_issue": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "support": 8
+        },
+        "content_availability": {
+          "precision": 0.96,
+          "recall": 0.75,
+          "f1": 0.8421052631578947,
+          "support": 32
+        },
+        "feature_request": {
+          "precision": 0.7241379310344828,
+          "recall": 0.8076923076923077,
+          "f1": 0.7636363636363637,
+          "support": 26
+        },
+        "how_to_question": {
+          "precision": 0.2222222222222222,
+          "recall": 0.5,
+          "f1": 0.3076923076923077,
+          "support": 4
+        },
+        "other": {
+          "precision": 0.7058823529411765,
+          "recall": 0.6,
+          "f1": 0.6486486486486487,
+          "support": 20
+        }
+      },
+      "confusion": [
+        [
+          11,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          19,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          13,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          8,
+          0,
+          0,
+          2,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          6,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          24,
+          3,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          21,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          2,
+          3,
+          12
+        ]
+      ],
+      "labels": [
+        "account_access",
+        "billing_and_refund",
+        "subscription_plan",
+        "playback_issue",
+        "app_bug",
+        "library_playlist_issue",
+        "content_availability",
+        "feature_request",
+        "how_to_question",
+        "other"
+      ]
+    }
+  },
+  "escalation": {
+    "always": {
+      "precision": 0.4875,
+      "recall": 1.0,
+      "f1": 0.6554621848739496,
+      "missed_escalation_rate": 0.0,
+      "unnecessary_escalation_rate": 0.5125,
+      "automation_rate": 0.0,
+      "weighted_error": 0.5125,
+      "n": 160
+    },
+    "rules_only": {
+      "precision": 1.0,
+      "recall": 0.10256410256410256,
+      "f1": 0.18604651162790695,
+      "missed_escalation_rate": 0.4375,
+      "unnecessary_escalation_rate": 0.0,
+      "automation_rate": 0.95,
+      "weighted_error": 2.1875,
+      "n": 160
+    },
+    "agent": {
+      "precision": 0.6355140186915887,
+      "recall": 0.8717948717948718,
+      "f1": 0.7351351351351351,
+      "missed_escalation_rate": 0.0625,
+      "unnecessary_escalation_rate": 0.24375,
+      "automation_rate": 0.33125,
+      "weighted_error": 0.55625,
+      "n": 160
+    }
+  },
+  "reply": {
+    "agent": {
+      "groundedness": 3.2375,
+      "correctness": 3.26875,
+      "tone": 4.50625,
+      "actionability": 3.33125,
+      "overall": 3.06875,
+      "n": 160,
+      "share_overall_ge4": 0.45625,
+      "parse_failures": 0
+    },
+    "canned": {
+      "groundedness": 2.85,
+      "correctness": 2.1,
+      "tone": 3.825,
+      "actionability": 2.275,
+      "overall": 2.125,
+      "n": 40,
+      "share_overall_ge4": 0.15,
+      "parse_failures": 0
+    },
+    "nn": {
+      "groundedness": 4.95,
+      "correctness": 2.64375,
+      "tone": 4.38125,
+      "actionability": 2.95625,
+      "overall": 2.6625,
+      "n": 160,
+      "share_overall_ge4": 0.375,
+      "parse_failures": 0
+    }
+  },
+  "stats": {
+    "n": 160,
+    "n_resamples": 10000,
+    "seed": 42,
+    "miss_cost": 5.0,
+    "intent": {
+      "majority": {
+        "accuracy_ci95": [
+          0.075,
+          0.1812
+        ],
+        "macro_f1_ci95": [
+          0.014,
+          0.0307
+        ]
+      },
+      "logreg": {
+        "accuracy_ci95": [
+          0.3875,
+          0.5375
+        ],
+        "macro_f1_ci95": [
+          0.3645,
+          0.5422
+        ]
+      },
+      "agent": {
+        "accuracy_ci95": [
+          0.675,
+          0.8063
+        ],
+        "macro_f1_ci95": [
+          0.5985,
+          0.7615
+        ]
+      },
+      "agent_vs_logreg_mcnemar": {
+        "b": 59,
+        "c": 14,
+        "p_exact": 1.0136448982171495e-07
+      },
+      "agent_vs_majority_mcnemar": {
+        "b": 107,
+        "c": 8,
+        "p_exact": 3.073178824824114e-23
+      }
+    },
+    "escalation": {
+      "always": {
+        "weighted_error_ci95": [
+          0.4375,
+          0.5875
+        ]
+      },
+      "rules_only": {
+        "weighted_error_ci95": [
+          1.8125,
+          2.5625
+        ]
+      },
+      "agent": {
+        "weighted_error_ci95": [
+          0.3812,
+          0.7562
+        ]
+      },
+      "agent_vs_always": {
+        "diff": 0.0437,
+        "ci95": [
+          -0.1562,
+          0.2625
+        ],
+        "p_a_lower": 0.341,
+        "n": 160
+      },
+      "agent_vs_rules_only": {
+        "diff": -1.6313,
+        "ci95": [
+          -2.0438,
+          -1.2188
+        ],
+        "p_a_lower": 1.0,
+        "n": 160
+      }
+    },
+    "reply": {
+      "agent": {
+        "overall_ci95": [
+          2.825,
+          3.3125
+        ]
+      },
+      "canned": {
+        "overall_ci95": [
+          1.825,
+          2.45
+        ]
+      },
+      "nn": {
+        "overall_ci95": [
+          2.4,
+          2.925
+        ]
+      },
+      "agent_vs_canned": {
+        "diff": 0.7,
+        "ci95": [
+          0.225,
+          1.175
+        ],
+        "p_a_lower": 0.002,
+        "n": 40
+      },
+      "agent_vs_nn": {
+        "diff": 0.4062,
+        "ci95": [
+          0.1125,
+          0.6937
+        ],
+        "p_a_lower": 0.004,
+        "n": 160
+      }
+    },
+    "note": "ci95 are seeded percentile bootstrap intervals over the golden rows. p_a_lower is the share of resamples in which the first system's cost came out lower (better) -- a directional bootstrap proportion, not a null-hypothesis p-value. McNemar p_exact is a two-sided exact binomial test on the discordant rows."
+  },
+  "llm_cache": {
+    "hits": 520,
+    "misses": 0
+  }
+}
