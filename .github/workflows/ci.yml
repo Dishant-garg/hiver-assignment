@@ -1,0 +1,47 @@
+name: ci
+
+# The repository makes two checkable claims: the test suite is green and offline, and the
+# committed results in results/ are exactly what the committed LLM cache reproduces. This
+# workflow checks both on every push, with no API key present -- if a job needed a key to pass,
+# the offline-reproduction claim would be false.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]" -c constraints.txt
+
+      - name: Run the test suite
+        run: pytest -q
+
+      - name: Reproduce the committed results from the committed cache
+        # No GROQ_API_KEY is set. LLM_OFFLINE=1 turns any prompt missing from
+        # data/cache/llm_cache.jsonl into a CacheMissError, so this step fails loudly rather
+        # than quietly calling out to a live model.
+        run: |
+          cp results/summary.md /tmp/summary.committed.md
+          LLM_OFFLINE=1 python -m support_agent.eval.run --out results
+
+      - name: Assert the results are byte-identical
+        run: diff -u /tmp/summary.committed.md results/summary.md
+
+      - name: Assert a partial run cannot overwrite the committed results
+        run: |
+          if python -m support_agent.eval.run --limit 5 --out results 2>/dev/null; then
+            echo "guard did not fire: a --limit run was allowed to overwrite results/"; exit 1
+          fi
+          echo "OK: partial-run guard fired as expected"

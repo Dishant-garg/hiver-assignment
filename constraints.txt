@@ -1,0 +1,21 @@
+# Exact versions this evaluation's committed results were produced with.
+#
+# `make reproduce` claims byte-identical output. That claim depends on more than the LLM cache:
+# scikit-learn's TF-IDF tokenizer and LogisticRegression solver decide the logreg baseline's
+# predictions, and numpy's Generator decides every bootstrap interval. Both are pinned here so a
+# future release cannot silently move the committed numbers.
+#
+# Installed by `make setup`. To deliberately test against current releases instead:
+#   .venv/bin/pip install -e ".[dev]"        # ignores this file
+joblib==1.6.0
+numpy==2.5.3
+openai==3.13.0
+pandas==3.0.5
+pyarrow==25.0.1
+pydantic==2.13.5
+pytest==9.1.1
+python-dotenv==1.2.3
+scikit-learn==1.9.1
+scipy==1.18.1
+tabulate==0.10.0
+threadpoolctl==3.6.0

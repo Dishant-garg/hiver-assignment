@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "support-agent"
+version = "0.1.0"
+description = "Brand-specific AI support agent over the Customer Support on Twitter dataset"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.2",
+  "pyarrow>=15",
+  "scikit-learn>=1.5",
+  "openai>=1.40",
+  "python-dotenv>=1.0",
+  "pydantic>=2.7",
+  "tabulate>=0.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
