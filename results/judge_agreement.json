@@ -1,57 +1,57 @@
 {
   "overall": {
-    "n": 60,
-    "kappa_quadratic": 0.5610005104645227,
-    "spearman": 0.59059456,
-    "exact_agreement": 0.38333333333333336,
-    "within_one": 0.7833333333333333,
-    "human_mean": 2.883,
-    "judge_mean": 2.85,
-    "judge_minus_human_mean": -0.033,
+    "n": 58,
+    "kappa_quadratic": 0.538821328344247,
+    "spearman": 0.566064695,
+    "exact_agreement": 0.3793103448275862,
+    "within_one": 0.7758620689655172,
+    "human_mean": 2.931,
+    "judge_mean": 2.914,
+    "judge_minus_human_mean": -0.017,
     "kappa_ci95": [
-      0.35,
-      0.711
+      0.331,
+      0.697
     ],
     "spearman_ci95": [
-      0.372,
-      0.76
+      0.336,
+      0.74
     ]
   },
   "per_system": {
     "agent": {
-      "n": 30,
-      "kappa_quadratic": 0.5714285714285714,
-      "spearman": 0.674943828,
-      "exact_agreement": 0.43333333333333335,
-      "within_one": 0.8,
-      "human_mean": 3.533,
-      "judge_mean": 3.167,
-      "judge_minus_human_mean": -0.367,
+      "n": 29,
+      "kappa_quadratic": 0.5392523364485982,
+      "spearman": 0.644938491,
+      "exact_agreement": 0.4482758620689655,
+      "within_one": 0.7931034482758621,
+      "human_mean": 3.586,
+      "judge_mean": 3.241,
+      "judge_minus_human_mean": -0.345,
       "kappa_ci95": [
-        0.339,
-        0.745
+        0.294,
+        0.739
       ],
       "spearman_ci95": [
-        0.411,
-        0.845
+        0.357,
+        0.833
       ]
     },
     "nn": {
-      "n": 20,
-      "kappa_quadratic": 0.4854881266490766,
-      "spearman": 0.583260939,
-      "exact_agreement": 0.3,
-      "within_one": 0.75,
-      "human_mean": 2.2,
-      "judge_mean": 2.65,
-      "judge_minus_human_mean": 0.45,
+      "n": 19,
+      "kappa_quadratic": 0.4555473916238061,
+      "spearman": 0.553284556,
+      "exact_agreement": 0.2631578947368421,
+      "within_one": 0.7368421052631579,
+      "human_mean": 2.263,
+      "judge_mean": 2.737,
+      "judge_minus_human_mean": 0.474,
       "kappa_ci95": [
-        0.137,
-        0.751
+        0.08,
+        0.733
       ],
       "spearman_ci95": [
-        0.199,
-        0.824
+        0.12,
+        0.823
       ]
     },
     "canned": {
@@ -85,13 +85,13 @@
   },
   "system_ranking": {
     "human": {
-      "agent": 3.533,
+      "agent": 3.586,
       "canned": 2.3,
-      "nn": 2.2
+      "nn": 2.263
     },
     "judge": {
-      "agent": 3.167,
-      "nn": 2.65,
+      "agent": 3.241,
+      "nn": 2.737,
       "canned": 2.3
     }
   },

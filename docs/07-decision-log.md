@@ -382,11 +382,11 @@ Results: `docs/05-judge-agreement.md`, `results/judge_agreement.json`.
   50 agent/nn rows were untouched by this. The sampler now reads the judge file's
   `(golden_id, system)` key columns via `usecols` so the constraint is enforced up front without a
   score ever reaching the sheet.
-- **What the numbers licence.** kappa 0.561 (95% CI [0.350, 0.711]) / Spearman 0.591 ([0.372, 0.760])
-  / within-one 0.78 on n=60, with judge and human means 0.03 apart and both ranking the agent first,
+- **What the numbers licence.** kappa 0.539 (95% CI [0.331, 0.697]) / Spearman 0.566 ([0.336, 0.740])
+  / within-one 0.78 on n=58, with judge and human means 0.02 apart and both ranking the agent first,
   licences **"the judge can rank systems"** -- specifically, that the agent beats the baselines. The
   intervals are seeded percentile bootstraps (`config.SEED`, 2,000 resamples) added in
-  `scripts/judge_agreement.py`; they exclude zero, so the agreement is real, but 0.561 is only
+  `scripts/judge_agreement.py`; they exclude zero, so the agreement is real, but 0.539 is only
   **moderate** on Landis-Koch (substantial starts at 0.61) and the interval is wide enough that no
   claim resting on a kappa threshold is supportable. It does **not** licence ranking nn against
   canned -- the two scorers order them differently on gaps of 0.10 and 0.35 points, and the canned

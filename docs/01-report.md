@@ -130,20 +130,22 @@ against tone at 4.53. It sounds like the brand and is right about two-thirds of 
 
 ## 5. Is the judge worth believing
 
-`docs/05-judge-agreement.md` is the evidence. Sixty replies were scored independently against the same
-rubric, blind to the judge and with the system column masked. Quadratic-weighted kappa is 0.561
-[0.350, 0.711], Spearman 0.591 [0.372, 0.760], exact agreement 0.38, within-one 0.78. Judge mean
-2.85 against human mean 2.88, so there is no global leniency offset. The same judge re-scoring at
-temperature 0.0 and 0.7 agrees with itself at kappa 0.704 on 40 agent replies -- the right
-comparison for the agent-slice kappa of 0.571, not for the overall 0.561.
+`docs/05-judge-agreement.md` is the evidence. Sixty replies were scored independently against the
+same rubric, blind to the judge and with the system column masked; 58 are still comparable, two
+having been redrafted by the retrieval fix after they were scored, and those are dropped rather
+than compared across different text. Quadratic-weighted kappa is 0.539 [0.331, 0.697], Spearman
+0.566 [0.336, 0.740], exact agreement 0.38, within-one 0.78. Judge mean 2.91 against human mean
+2.93, so there is no global leniency offset. The same judge re-scoring at temperature 0.0 and 0.7
+agrees with itself at kappa 0.704 on 40 agent replies -- the right comparison for the agent-slice
+kappa of 0.539, not for the overall 0.539.
 
 The verdict is narrow. Both scorers put the agent first, though not by the same distance: the human
-by 1.23 points over its runner-up (canned at 2.30), the judge by 0.52 over its own (nn at 2.65).
+by 1.29 points over its runner-up (canned at 2.30), the judge by 0.50 over its own (nn at 2.74).
 Ranking is what the judge is used for, and the ranking holds. Neither scorer separates nn from
 canned, so that comparison is unsupported, and no single judge score should be cited about a single
 reply when exact agreement is 0.38.
 
-The disagreements matter more than the kappa, because they are one-directional. Seventeen judge
+The disagreements matter more than the kappa, because they are one-directional. Sixteen judge
 rationales use the word "invent", and those rows average 1.06 points *below* the human. Four praise
 a candidate for matching the evidence exactly, and those average 1.50 points *above*. The judge is
 measuring fidelity to retrieved text rather than whether a customer is helped. That bias runs
@@ -253,7 +255,7 @@ same phrases for months, so the retriever can still find a near-identical reply 
 never seen. Golden 145's top score is 0.738. That inflates the nn baseline and the agent's
 groundedness alike.
 
-**The judge is an LLM with a measured bias and moderate agreement.** kappa 0.561 [0.350, 0.711],
+**The judge is an LLM with a measured bias and moderate agreement.** kappa 0.539 [0.331, 0.697],
 exact agreement 0.38. The reply gap of +0.400 [+0.106, +0.688] does survive *sampling* noise, but
 sampling noise is not the binding constraint: a judge that matches a careful human exactly on 38%
 of rows is being asked to resolve four tenths of a point.

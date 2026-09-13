@@ -1,8 +1,17 @@
-# Judge-vs-human agreement on 60 replies
+# Judge-vs-human agreement on 58 replies
 
 `docs/04-judge-rubric.md` documents what the LLM judge is asked to do and which biases to expect.
 This document is the evidence for whether its `overall` score can be believed. Sixty replies were
 scored by hand against the same rubric, blind to the judge, and the two sets of scores compared.
+
+**Fifty-eight of those sixty are still comparable.** Making retrieval deterministic (decision log
+12) reordered the evidence for sixteen golden rows, which redrafted the candidate on two of the
+scored rows — golden 29 (nn) and golden 141 (agent). The join key is `(golden_id, system)`, which
+survives a change of reply, so comparing those rows would have silently set a human's judgement of
+one reply against the judge's score of a different one. That is not a disagreement between scorers.
+`scripts/judge_agreement.py` now compares each row against the candidate recorded in
+`human_scoring_sheet.csv` — the text actually put in front of the scorer — and drops and names any
+row where the two no longer match. Re-scoring those two by hand would return them to the study.
 
 Reproduce with:
 
@@ -52,9 +61,9 @@ unchanged.
 
 | slice | n | kappa (quadratic) | kappa 95% CI | Spearman | Spearman 95% CI | exact | within 1 | human mean | judge mean | judge - human |
 |---|---:|---:|:---:|---:|:---:|---:|---:|---:|---:|---:|
-| overall | 60 | 0.561 | [0.350, 0.711] | 0.591 | [0.372, 0.760] | 0.38 | 0.78 | 2.88 | 2.85 | -0.03 |
-| agent | 30 | 0.571 | [0.339, 0.745] | 0.675 | [0.411, 0.845] | 0.43 | 0.80 | 3.53 | 3.17 | -0.37 |
-| nn | 20 | 0.485 | [0.137, 0.751] | 0.583 | [0.199, 0.824] | 0.30 | 0.75 | 2.20 | 2.65 | +0.45 |
+| overall | 58 | 0.539 | [0.331, 0.697] | 0.566 | [0.336, 0.740] | 0.38 | 0.78 | 2.93 | 2.91 | -0.02 |
+| agent | 29 | 0.539 | [0.294, 0.739] | 0.646 | [0.365, 0.833] | 0.41 | 0.79 | 3.59 | 3.24 | -0.34 |
+| nn | 19 | 0.456 | [0.080, 0.733] | 0.560 | [0.155, 0.812] | 0.32 | 0.74 | 2.26 | 2.74 | +0.47 |
 | canned | 10 | 0.155 | [-0.182, 0.623] | 0.274 | [-0.325, 0.861] | 0.40 | 0.80 | 2.30 | 2.30 | +0.00 |
 
 Intervals are seeded percentile bootstraps (`config.SEED`, 2,000 resamples of the scored pairs,
@@ -63,38 +72,38 @@ Intervals are seeded percentile bootstraps (`config.SEED`, 2,000 resamples of th
 have an undefined kappa; `agreement.weighted_kappa` returns 0.0 there, so they pull the lower bound
 down rather than being quietly dropped -- the conservative direction.
 
-**The headline interval is wide: kappa 0.561 [0.350, 0.711] on n=60.** It excludes zero, so the
+**The headline interval is wide: kappa 0.539 [0.331, 0.697] on n=58.** It excludes zero, so the
 agreement is real, but it spans from "fair" to "substantial" on Landis-Koch. Any claim that needs
 kappa to be above some threshold is not supported by this study; claims that need it to be above
 zero are.
 
 **Per-system kappa is not to be read as a measurement.** The bootstrap makes the point better than
-prose: [0.339, 0.745] for agent, [0.137, 0.751] for nn, [-0.182, 0.623] for canned. The canned slice
+prose: [0.294, 0.739] for agent, [0.080, 0.733] for nn, [-0.182, 0.623] for canned. The canned slice
 also has almost no score variance on either side (human scores are 2s and 3s), which deflates kappa
 arithmetically -- 0.155 there says "this slice is too small and too flat to measure", not "the judge
 is random on canned replies". The `overall` row is the number worth quoting.
 
 **Self-consistency** (`results/judge_consistency.json`, Task 14): the same judge re-scoring the same
-replies at temperature 0.0 and 0.7 agrees with *itself* at kappa 0.704, Spearman 0.694, exact 0.55,
+replies at temperature 0.0 and 0.7 agrees with *itself* at kappa 0.704, Spearman 0.694, exact 0.57,
 within-one 0.90. Two qualifications on using that as "the judge's own ceiling". It was measured on
 **40 agent replies only** (the first 40 golden rows), so it is a ceiling for the agent slice, not for
-nn or canned. And the like-for-like comparison is therefore not the overall 0.561 but the
-**agent-slice kappa 0.571 [0.339, 0.745]** against self-consistency 0.704: the judge agrees with a
+nn or canned. And the like-for-like comparison is therefore not the overall 0.539 but the
+**agent-slice kappa 0.539 [0.294, 0.739]** against self-consistency 0.704: the judge agrees with a
 human on agent replies slightly less well than it agrees with itself, which is the expected ordering
 -- if human agreement had come out *higher* than self-agreement, something would be wrong with the
-study. The two intervals overlap heavily, so the gap between 0.571 and 0.704 is itself not
+study. The two intervals overlap heavily, so the gap between 0.539 and 0.704 is itself not
 established.
 
 **System ranking**, the thing the judge is actually used for:
 
 | | 1st | 2nd | 3rd |
 |---|---|---|---|
-| human | agent 3.53 | canned 2.30 | nn 2.20 |
-| judge | agent 3.17 | nn 2.65 | canned 2.30 |
+| human | agent 3.59 | canned 2.30 | nn 2.26 |
+| judge | agent 3.24 | nn 2.74 | canned 2.30 |
 
-Both put the agent clearly first, though not by the same distance: the human by 1.23 points over its
-runner-up, the judge by 0.52 over its own. Neither can separate nn from canned: the two
-baselines are 0.10 apart for the human and 0.35 apart for the judge, in opposite orders, on n = 20
+Both put the agent clearly first, though not by the same distance: the human by 1.29 points over its
+runner-up, the judge by 0.50 over its own. Neither can separate nn from canned: the two
+baselines are 0.04 apart for the human and 0.44 apart for the judge, in opposite orders, on n = 19
 and n = 10. All `parse_ok` values in the joined rows are true, so no clamped parse failure is
 propping up any of these means.
 
@@ -151,7 +160,7 @@ the rubric means a next step that helps, not any next step at all. This is the s
 that most inflates the canned baseline.
 
 The pattern across all 13 disagreements of 2 points or more is consistent and one-directional:
-**17 judge rationales use the word "invent", and those rows average -1.06 (judge below human);
+**16 judge rationales use the word "invent", and those rows average -1.06 (judge below human);
 4 rationales praise the candidate for being identical to the evidence, and those average +1.50
 (judge above human).** Every one of the 3 rows where the judge scored <= 2 and the human >= 4 is an
 agent row; 4 of the 6 rows where the judge scored >= 4 and the human <= 2 are nn rows. The judge is
@@ -162,11 +171,11 @@ does not flatter the agent's headline result.
 
 ## Verdict
 
-**Trustworthy for ranking systems: yes, with one boundary.** kappa 0.561 [0.350, 0.711] and Spearman
-0.591 [0.372, 0.760] on n=60 are **moderate** agreement on Landis-Koch (substantial starts at 0.61,
+**Trustworthy for ranking systems: yes, with one boundary.** kappa 0.539 [0.331, 0.697] and Spearman
+0.566 [0.336, 0.740] on n=58 are **moderate** agreement on Landis-Koch (substantial starts at 0.61,
 which is inside the interval but above the point estimate), the judge's mean (2.85) is within 0.03
 of the human's (2.88) so there is no global leniency or severity offset, and both scorers put the
-agent on top (the human by 1.23 points over its runner-up, the judge by 0.52 over its own). That is
+agent on top (the human by 1.29 points over its runner-up, the judge by 0.50 over its own). That is
 enough to support the claim the evaluation actually makes
 -- the LLM agent beats the retrieval and canned baselines on reply quality. **It is not enough to
 rank the two baselines against each other**, for two independent reasons. First, human and judge
@@ -178,8 +187,8 @@ form "nn beats canned" is unsupported by this study.
 **Trustworthy for scoring an individual reply: no.** Exact agreement is 0.38, so on nearly two rows
 in three the judge's number is not the number a careful rubric-reader would give, and 13 of 60 rows
 differ by 2 or more points -- the distance between "would half-help" and "unusable". The judge's own
-score distribution is polarised (14 ones and 11 fives out of 60) against a human distribution that
-concentrates in the middle (22 twos, 15 threes, 15 fours). Within-one agreement of 0.78 means the
+score distribution is polarised (12 ones and 11 fives out of 58) against a human distribution that
+concentrates in the middle (21 twos, 15 threes, 15 fours). Within-one agreement of 0.78 means the
 judge is usually in the right neighbourhood, which is why the aggregate works while the individual
 score does not. Do not cite a single judge score as evidence about a single reply, and do not use
 the judge as an automatic gate on a production reply.
@@ -187,13 +196,13 @@ the judge as an automatic gate on a production reply.
 ## Limitations
 
 - **One scorer, and that scorer is an AI.** There is no second human, so there is no human-human
-  agreement baseline to compare 0.561 against. The honest reading is that kappa 0.561 is an upper
+  agreement baseline to compare 0.539 against. The honest reading is that kappa 0.539 is an upper
   bound on nothing and a lower bound on nothing -- it is one number from one rater.
 - **The scorer and the judge may share biases.** Both are large language models. Correlated error
   inflates agreement: where both are wrong in the same direction, this study records agreement and
   calls it evidence. A human rater who has worked a support queue would likely disagree with both,
   most plausibly on the "ask them to DM" replies that both scorers treat as acceptable.
-- **n = 60**, and 30/20/10 within it. The overall figure is usable (kappa 0.561 [0.350, 0.711]);
+- **n = 58**, and 29/19/10 within it. The overall figure is usable (kappa 0.539 [0.331, 0.697]);
   every per-system figure is indicative at best, and the canned kappa [-0.182, 0.623] is not
   interpretable at all.
 - **The canned slice is not a random sample of the golden set.** It is drawn from golden ids 0-39,
@@ -211,4 +220,4 @@ the judge as an automatic gate on a production reply.
 - **Single pass.** The scorer labelled each row once, with no re-scoring after a gap, so there is no
   measure of the *human's* self-consistency to set against the judge's 0.704 -- which itself was
   measured on 40 **agent** replies only, and so compares like-for-like against the agent-slice kappa
-  of 0.571, not against the overall 0.561.
+  of 0.539, not against the overall 0.539.

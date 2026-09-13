@@ -53,10 +53,34 @@ def bootstrap_ci(human: list[int], judge: list[int], seed: int = config.SEED) ->
 
 
 def load() -> pd.DataFrame:
+    """Join the human labels to the judge's, dropping any row whose reply has since changed.
+
+    The join key is (golden_id, system), which stays valid even when the agent's *reply* for that
+    row changes -- so a silent comparison of a human's judgement of one reply against the judge's
+    score of a different one is possible, and did happen: making retrieval deterministic reordered
+    the evidence for 16 golden rows, which redrafted two of the sixty scored replies. Comparing
+    across that is not a disagreement between scorers, it is two scorers reading different text.
+
+    `human_scoring_sheet.csv` records the candidate exactly as it was put in front of the scorer,
+    so any row where that no longer matches `judge_scores.csv` is dropped and named. Re-scoring
+    those rows by hand would restore them to the study.
+    """
     human = pd.read_csv(config.GOLDEN_DIR / "human_judge_labels.csv")
     judge = pd.read_csv(config.RESULTS_DIR / "judge_scores.csv")
     merged = human.merge(judge[["golden_id", "system", "candidate", "overall", "rationale", "parse_ok"]],
                          on=["golden_id", "system"], how="left", validate="one_to_one")
+
+    sheet = pd.read_csv(config.GOLDEN_DIR / "human_scoring_sheet.csv")[["sheet_id", "candidate"]]
+    merged = merged.merge(sheet.rename(columns={"candidate": "candidate_as_scored"}), on="sheet_id", how="left")
+    norm = lambda c: c.astype(str).str.strip()
+    stale = norm(merged.candidate_as_scored) != norm(merged.candidate)
+    if stale.any():
+        rows = ", ".join(f"golden {int(r.golden_id)} ({r.system})" for _, r in merged[stale].iterrows())
+        print(f"dropping {int(stale.sum())} row(s) whose reply changed after they were scored: {rows}",
+              file=sys.stderr)
+        merged = merged[~stale].reset_index(drop=True)
+    merged = merged.drop(columns=["candidate_as_scored"])
+
     missing = merged.overall.isna().sum()
     if missing:
         raise ValueError(f"{missing} human-labelled rows have no judge score for (golden_id, system)")

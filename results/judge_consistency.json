@@ -1,8 +1,8 @@
 {
   "n": 40,
-  "kappa_quadratic": 0.7040302267002518,
-  "spearman": 0.694103451,
-  "exact_agreement": 0.55,
+  "kappa_quadratic": 0.7036082474226804,
+  "spearman": 0.694066279,
+  "exact_agreement": 0.575,
   "within_one": 0.9,
   "constant_t0": false,
   "constant_t07": false,
